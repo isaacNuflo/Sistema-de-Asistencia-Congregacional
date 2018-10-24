@@ -1,1 +1,0 @@
-libreria de lineas base
