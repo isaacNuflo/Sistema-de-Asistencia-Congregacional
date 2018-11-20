@@ -13,4 +13,9 @@ public interface Dao <T> {
     boolean insertRegistro(T registro);
 
     int updateRegistro(T registro);
+
+    T getRegistro(List<Parametro> filtros);
+
+    List<T> listRegistros(int id);
+    
 }

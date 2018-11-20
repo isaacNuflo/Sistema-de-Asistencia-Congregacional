@@ -168,4 +168,14 @@ public class DaoMiembro implements Dao<Miembro>{
         }
         return retorno;
     }
+
+    @Override
+    public Miembro getRegistro(List<Parametro> filtros) {
+        return null;
+    }
+
+    @Override
+    public List<Miembro> listRegistros(int id) {
+        return null;
+    }
 }
