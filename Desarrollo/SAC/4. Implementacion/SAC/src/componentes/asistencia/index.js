@@ -81,7 +81,7 @@ class registrar extends Component {
         //console.log(this.textInput.current.value);
 
         console.log(JSON.stringify(data,null,'\t'));
-        PostData(data)
+        PostData(data,'A')
             .then(result => {
                 if(result){
                     alert('asistencia registrada');
