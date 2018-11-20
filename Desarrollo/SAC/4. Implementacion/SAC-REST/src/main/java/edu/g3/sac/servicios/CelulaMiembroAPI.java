@@ -5,7 +5,6 @@ import edu.g3.sac.dao.Dao;
 import edu.g3.sac.dao.FactoryDao;
 import edu.g3.sac.dao.Parametro;
 import edu.g3.sac.dao.beans.CelulaMiembro;
-import jersey.repackaged.org.objectweb.asm.Type;
 
 import javax.naming.NamingException;
 import javax.ws.rs.*;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Types;
 
 @Path("/celulamiembro")
 public class CelulaMiembroAPI {
@@ -38,9 +38,9 @@ public class CelulaMiembroAPI {
             Dao<CelulaMiembro> dao = factoryDao.getDao(conexion,FactoryDao.DAO_CELULA_MIEMBRO);
 
             List<Parametro> parametros = new ArrayList<Parametro>();
-            Parametro idCelula = new Parametro(idcelula,"idcelula",Type.INT);
+            Parametro idCelula = new Parametro(idcelula,"idcelula", Types.INTEGER);
             parametros.add(idCelula);
-            Parametro idMiembro = new Parametro(idmiembro, "idmiembro", Type.INT);
+            Parametro idMiembro = new Parametro(idmiembro, "idmiembro", Types.INTEGER);
             parametros.add(idMiembro);
             retorno = dao.getRegistro(parametros);
             if(retorno == null)

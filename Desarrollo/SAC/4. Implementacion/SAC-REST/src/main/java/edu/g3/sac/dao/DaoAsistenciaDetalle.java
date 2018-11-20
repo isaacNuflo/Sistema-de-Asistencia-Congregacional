@@ -144,4 +144,25 @@ public class DaoAsistenciaDetalle implements Dao<AsistenciaDetalle> {
         return null;
     }
 
+    @Override
+    public boolean insertManyRegistros(List<AsistenciaDetalle> registros) {
+        boolean retorno;
+        String sql = "INSERT INTO public.asistenciadetalle(idasistencia, idmiembro, estado)\n"
+                + "	VALUES (?, ?, ?);\n";
+        try (PreparedStatement pst = this.conexion.prepareStatement(sql)) {
+            for(AsistenciaDetalle ad : registros){
+                pst.setInt(1, ad.getIdasistencia());
+                pst.setInt(2, ad.getIdmiembro());
+                pst.setBoolean(3, ad.isEstado());
+    
+                pst.execute();
+            }
+            retorno = true;
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+            retorno = false;
+        }
+        return retorno;
+    }
+
 }

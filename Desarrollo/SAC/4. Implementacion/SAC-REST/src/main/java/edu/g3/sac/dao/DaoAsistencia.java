@@ -86,8 +86,8 @@ public class DaoAsistencia implements Dao<Asistencia> {
     @Override
     public boolean insertRegistro(Asistencia registro) {
         boolean retorno;
-        String sql = "INSERT INTO public.asistencia(idcelula, total, lugarreunion, horainicio, fechareunion)\n" +
-                     "	VALUES (?, ?, ?, ?, ?);\n";
+        String sql = "INSERT INTO public.asistencia(idcelula, total, lugarreunion, horainicio, fechareunion)\n"
+                + "	VALUES (?, ?, ?, ?, ?);\n";
         try (PreparedStatement pst = this.conexion.prepareStatement(sql)) {
             pst.setInt(1, registro.getIdcelula());
             pst.setInt(2, registro.getTotal());
@@ -106,11 +106,11 @@ public class DaoAsistencia implements Dao<Asistencia> {
 
     @Override
     public int updateRegistro(Asistencia registro) {
-        String sql = "UPDATE public.asistencia\n" +
-                "SET idasistencia=?, idcelula=?, total=?, lugarreunion=?, horainicio=?, fechareunion=? \n" +
-                "WHERE idasistencia = ?;";
+        String sql = "UPDATE public.asistencia\n"
+                + "SET idasistencia=?, idcelula=?, total=?, lugarreunion=?, horainicio=?, fechareunion=? \n"
+                + "WHERE idasistencia = ?;";
         int retorno;
-        try(PreparedStatement pst = this.conexion.prepareStatement(sql)){
+        try (PreparedStatement pst = this.conexion.prepareStatement(sql)) {
             pst.setInt(1, registro.getIdasistencia());
             pst.setInt(2, registro.getIdcelula());
             pst.setInt(3, registro.getTotal());
@@ -120,12 +120,42 @@ public class DaoAsistencia implements Dao<Asistencia> {
             pst.setInt(7, registro.getIdasistencia());
 
             retorno = pst.executeUpdate();
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace(System.err);
             retorno = -1;
         }
         return retorno;
+    }
+
+    @Override
+    public Asistencia getRegistro(List<Parametro> filtros) {
+        String sql = String.format("SELECT * FROM asistencia %s ", this.condicional(filtros));
+        Asistencia registro = null;
+        try (PreparedStatement pst = this.conexion.prepareStatement(sql)) {
+            int i = 1;
+            for (Parametro p : filtros)
+                pst.setObject(i++, p.getValor(), p.getTipo());
+                
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    registro = new Asistencia();
+                    registro.setIdasistencia(rs.getInt("idasistencia"));
+                    registro.setIdcelula(rs.getInt("idcelula"));
+                    registro.setFechareunion(rs.getDate("fechareunion"));
+                    registro.setHorainicio(rs.getTime("horainicio"));
+                    registro.setTotal(rs.getInt("total"));
+                    registro.setLugarreunion(rs.getString("lugarreunion"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(System.err);
+        }
+        return registro;
+    }
+
+    @Override
+    public List<Asistencia> listRegistros(int id) {
+        return null;
     }
 
     private String condicional(List<Parametro> parametros) {
@@ -141,16 +171,6 @@ public class DaoAsistencia implements Dao<Asistencia> {
             retorno = builder.toString();
         }
         return retorno;
-    }
-
-    @Override
-    public Asistencia getRegistro(List<Parametro> filtros) {
-        return null;
-    }
-
-    @Override
-    public List<Asistencia> listRegistros(int id) {
-        return null;
     }
 
 }
