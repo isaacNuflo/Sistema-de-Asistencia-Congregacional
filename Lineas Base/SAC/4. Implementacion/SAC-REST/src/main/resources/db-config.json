@@ -1,0 +1,15 @@
+{
+  "type-connection" : "program",
+
+  "server-connection":{
+    "jndi":"java:/sac"
+  },
+  "program-connection":{
+    "user":"vfqzpfudsaolvd",
+    "pass":"6d0fbb6df4ca49303f7b1735695874e1939c74d74da1ded91ca2691b0cc090c9",
+    "ip":"ec2-54-163-230-178.compute-1.amazonaws.com",
+    "port":"5432",
+    "db":"d9pth4oq8avj6n",
+    "db-provider":"postgres"
+  }
+}
