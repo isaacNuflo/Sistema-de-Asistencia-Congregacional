@@ -13,4 +13,12 @@ public interface Dao <T> {
     boolean insertRegistro(T registro);
 
     int updateRegistro(T registro);
+
+    T getRegistro(List<Parametro> filtros);
+
+    List<T> listRegistros(int id);
+    
+    default boolean insertManyRegistros(List<T> registros){
+        throw new UnsupportedOperationException("Metodo no soportado");
+    }
 }

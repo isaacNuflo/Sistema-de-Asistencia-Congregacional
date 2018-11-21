@@ -3,6 +3,7 @@ package edu.g3.sac.dao.beans;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalTime;
 
 public class Asistencia implements Serializable{
 
