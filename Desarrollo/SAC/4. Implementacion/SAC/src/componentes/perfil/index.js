@@ -12,6 +12,12 @@ import { FaCoins } from "react-icons/fa";
 const perfil = () => {
 
     //const {usuario,nombres,apellidos,correo,monedas} = data;
+    /*
+    esto es florazo causa
+    const {usuario,nombres,apellidos,correo,monedas} = data;
+    const {usuario,nombres,apellidos,correo,monedas} = data;
+    const {usuario,nombres,apellidos,correo,monedas} = data;
+    */
     const usuario = JSON.parse(sessionStorage.getItem('user'));
     if (usuario) {
         return (

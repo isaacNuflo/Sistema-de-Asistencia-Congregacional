@@ -25,18 +25,18 @@ class Navigator extends Component {
                     </NavItem>
                     <NavItem eventKey="home">
                         <NavIcon>
-                            <Link to="/"><FaSearchPlus style={{ fontSize: '1.75em' }} /></Link>
+                            <Link to="/buscar"><FaSearchPlus style={{ fontSize: '1.75em' }} /></Link>
                         </NavIcon>
                         <NavText>
-                            <Link to="/">Buscar</Link>
+                            <Link to="/buscar">Buscar</Link>
                         </NavText>
                     </NavItem>
                     <NavItem eventKey="home">
                         <NavIcon>
-                            <Link to="/registrar"><FaRegistered style={{ fontSize: '1.75em' }} /></Link>
+                            <Link to="/"><FaRegistered style={{ fontSize: '1.75em' }} /></Link>
                         </NavIcon>
                         <NavText>
-                            <Link to="/registrar">Registrar</Link>
+                            <Link to="/">Registrar</Link>
                         </NavText>
                     </NavItem>
                     <NavItem eventKey="home">
