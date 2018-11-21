@@ -18,8 +18,8 @@ const AppRoutes=()=>{
 						<Route path="/perfil"       component={Perfil} />
 						<Route path="/nosotros"     component={Nosotros} />
 						<Route path="/asistencia"   component={Asistencia} />
-						<Route path="/registrar"    component={Registrar} />
-						<Route path='/'             component={Buscar} />
+						<Route path="/"    component={Registrar} />
+						<Route path='/buscar'             component={Buscar} />
 						<Route path='/login'        component={Login} />
 					</Switch>
 				</App>

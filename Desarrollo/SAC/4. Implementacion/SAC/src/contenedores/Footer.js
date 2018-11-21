@@ -7,7 +7,6 @@ const Footer = ()=>{
         <Container>
           <Row>
             <Col>
-                Sistema de Asistencia Congregacional 
             </Col>
           </Row>
         </Container>

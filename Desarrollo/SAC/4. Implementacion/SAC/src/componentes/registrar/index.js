@@ -78,7 +78,7 @@ class Registrar extends Component {
             <Container>
                 <Row className="mt-3 justify-content-center" style={{ backgroundColor: "#ffffff" }}>
                     <Col md={9} className="mt-4 mb-3">
-                    <h2>Registro de asistencia</h2>
+                    <h2>Registro miembro nuevo</h2>
                         <form>
                             <div className="form-group row">
                                 <div className="col-12 col-md-6 mb-3">
