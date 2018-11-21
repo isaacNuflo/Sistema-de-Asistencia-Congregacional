@@ -64,11 +64,16 @@ public class AsistenciaAPI {
         boolean retorno;
         if(peticion.getAsistenciadetalle() == null) 
             throw new WebApplicationException(Response.ok("{\"error\":\"Debes enviar un detalle\"}").build());
+        else if(peticion.getAsistenciadetalle().size() == 0)
+            throw new WebApplicationException(Response.ok("{\"error\":\"Debes enviar un detalle\"}").build());
+
         try(Connection conexion = connectionGenerator.getConnection()){
             conexion.setAutoCommit(false);
+            
             Dao<Asistencia> daoAsistencia = factoryDao.getDao(conexion,FactoryDao.DAO_ASISTENCIA);
             Dao<AsistenciaDetalle> daoAsistenciaDetalle = factoryDao.getDao(conexion, FactoryDao.DAO_ASISTENCIADETALLE);
             retorno = daoAsistencia.insertRegistro(peticion.getAsistencia());
+            
             if(retorno){
                 List<Parametro> parametros = new ArrayList<Parametro>();
                 Parametro idCelula = new Parametro(peticion.getAsistencia().getIdcelula(),"idcelula", Types.INTEGER);
@@ -77,15 +82,19 @@ public class AsistenciaAPI {
                 parametros.add(fechareunion);
                 Asistencia idasistencia = daoAsistencia.getRegistro(parametros);
                 if(idasistencia == null) 
-                throw new WebApplicationException(Response.ok("{\"error\":\"No se encontro el idasistencia\"}").build());
+                    throw new WebApplicationException(Response.ok("{\"error\":\"No se encontro el idasistencia\"}").build());
+                
                 peticion.getAsistenciadetalle().forEach(d -> d.setIdasistencia(idasistencia.getIdasistencia()));
                 retorno = daoAsistenciaDetalle.insertManyRegistros(peticion.getAsistenciadetalle());
             }
+            
             if(retorno == false){
                 conexion.rollback();
                 throw new WebApplicationException(Response.ok("{\"error\":\"No se puedo ingresar la asistencia\"}").build());
             }
-            else conexion.commit();
+            else 
+                conexion.commit();
+        
         }
         catch (SQLException | NamingException e){
             e.printStackTrace(System.err);
@@ -93,4 +102,6 @@ public class AsistenciaAPI {
         }
         return "{\"exito\":\"Asistencia ingresada\"}";
     }
+
+    
 }
