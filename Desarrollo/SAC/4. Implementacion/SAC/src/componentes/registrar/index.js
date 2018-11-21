@@ -40,21 +40,23 @@ class Registrar extends Component {
     handleSubmit = () => {
 
         const data = {
-            numeromiembro: 1,
+            numeromiembro: " ",
             nombres: this.state.nombre,
             apellidos: this.state.apellidos,
             fechanacimiento: this.state.nac,
-            telefono: this.state.nac,
+            telefono: this.state.tel,
             direccion: this.state.direc,
             bautizado: false,
             cargo: 'miembro',
             rol: false
         }
+        //console.log(data);
 
         PostData(data, "R")
             .then((result) => {
                 if (result) {
                     alert(`Usuario ${this.state.nombre} registrado con exito`);
+                    console.log(result);
                     this.setState({
                         nombre: '',
                         apellidos: '',
@@ -66,7 +68,7 @@ class Registrar extends Component {
                 }
             })
             .catch((err) => {
-                console.log("Error en el servidor:".numeromiembro);
+                console.log("Error en el servidor:".err);
             })
 
     }
@@ -76,6 +78,7 @@ class Registrar extends Component {
             <Container>
                 <Row className="mt-3 justify-content-center" style={{ backgroundColor: "#ffffff" }}>
                     <Col md={9} className="mt-4 mb-3">
+                    <h2>Registro de asistencia</h2>
                         <form>
                             <div className="form-group row">
                                 <div className="col-12 col-md-6 mb-3">
@@ -94,7 +97,7 @@ class Registrar extends Component {
                                 </div>
                                 <div className="col-12 col-md-6 mb-3">
                                     <label htmlFor="fecha">Fecha de Nac</label>
-                                    <input type="text" className="form-control" onKeyPress={this.handleKeyPress} placeholder="yyyy/mm/dd" value={this.state.nac} onChange={this.handleInputNac} name="fecha" id="fecha" />
+                                    <input type="text" className="form-control" onKeyPress={this.handleKeyPress} placeholder="yyyy-mm-dd" value={this.state.nac} onChange={this.handleInputNac} name="fecha" id="fecha" />
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -104,7 +107,7 @@ class Registrar extends Component {
                                 </div>
                                 <div className="col-12 col-md-6 mb-3">
                                     <label htmlFor="direccion">Direccion</label>
-                                    <input type="text" className="form-control" onKeyPress={this.handleKeyPress} placeholder="av. Tupac Shacur N°2351" value={this.state.direc} onChange={this.handleInputDir} name="direccion" id="direccion" />
+                                    <input type="text" className="form-control" onKeyPress={this.handleKeyPress} placeholder="av. Tupac Shakur N°2351" value={this.state.direc} onChange={this.handleInputDir} name="direccion" id="direccion" />
                                 </div>
                             </div>
                             <Row className="justify-content-end">

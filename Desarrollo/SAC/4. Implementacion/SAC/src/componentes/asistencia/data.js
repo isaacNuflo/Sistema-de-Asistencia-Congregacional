@@ -1,20 +1,26 @@
 export default[
 	{
         id:2,
-		nombre:'Mark',
-        apellidos:'asdadasd asdasdasd',
+		nombre:'MELANIE CARMEN',
+        apellidos:'AGUAYO ORTIZ ',
         estado:0
 	},
 	{
         id:4,
-		nombre:'Jacob',
-        apellidos:'kakakak asdasdasd',
+		nombre:'DIEGO DAVID',
+        apellidos:'ANAMPA CHURA',
         estado:0
 	},
 	{
         id:5,
-		nombre:'Larry',
-        apellidos:'asdasdasdasd adasdads',
+		nombre:'IHSAHN LIVI',
+        apellidos:'ANTONIO ZEVALLOS',
         estado:0
-	}
+    },
+    {
+        id:6,
+		nombre:' MELANY CAMILA',
+        apellidos:'ASENCIO SOTO',
+        estado:0
+    }
 ]

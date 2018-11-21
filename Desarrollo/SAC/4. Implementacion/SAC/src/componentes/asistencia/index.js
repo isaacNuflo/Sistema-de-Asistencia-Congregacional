@@ -100,8 +100,8 @@ class registrar extends Component {
     render() {
         return (
             <Container className="mt-5">
-                <Row className="justify-content-end">
-                    <Col sm={12}>
+                <Row className="justify-content-end " style={{backgroundColor:'#ffffff'}}>
+                    <Col sm={12} className="mt-3 mb-3">
                         <h2 className='mb-2'>Registro de asistencia de clase</h2>
                         <Row>
                             <Col sm={4}>
@@ -141,7 +141,7 @@ class registrar extends Component {
                             </tbody>
                         </Table>
                     </Col>
-                    <Col sm={9} md={3}>
+                    <Col sm={9} md={3} className="mb-3">
                         <button className='btn btn-primary btn-block' onClick={this.enviar}>Registrar</button>
                     </Col>
                 </Row>
